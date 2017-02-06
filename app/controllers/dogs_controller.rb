@@ -26,6 +26,18 @@ class DogsController < ApplicationController
     @dog = Dog.find(params[:id])
   end
 
+  def update
+    @dog = Dog.find(params[:id])
+
+    if @dog.update(dog_params)
+      redirect_to dogs_url, notice: "Successfully Updated #{@dog.name}"
+    else
+      flash.now[:notice] = "Something went wrong. We couldn't update #{@dog.name}"
+      render :edit
+    end
+
+  end
+
   private
   # protection from SQL injection using strong params
   def dog_params
