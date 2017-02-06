@@ -35,7 +35,15 @@ class DogsController < ApplicationController
       flash.now[:notice] = "Something went wrong. We couldn't update #{@dog.name}"
       render :edit
     end
+  end
 
+  def destroy
+    @dog = Dog.find(params[:id])
+    if @dog.destroy
+      redirect_to dogs_url, notice: "#{@dog.name} has been succesfully deleted."
+    else
+      redirect_to dogs_url, notice: "Couldn't delete #{@dog.name}"
+    end
   end
 
   private

@@ -18,6 +18,12 @@
         <td><%= dog.breed %></td>
         <td><%= dog.age %></td>
         <td><%= link_to "Profile", dog_path(dog) %></td>
+        <td><%= link_to "Edit", edit_dog_path(dog) %></td>
+        <td><%= link_to "Delete",
+                        dog,
+                        method: :delete,
+                        data: { confirm: "Are your sure?" } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
